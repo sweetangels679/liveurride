@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Ur Ride | Biker Safety & Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Rajdhani', sans-serif; background-color: #050505; color: #e5e5e5; }
+        h1, h2, h3, .brand-font { font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; }
+        .text-orange { color: #ff6600; }
+        .bg-orange { background-color: #ff6600; }
+        .biker-card { background: #111; border: 1px solid #222; transition: 0.3s; }
+        .biker-card:hover { border-color: #ff6600; transform: translateY(-5px); }
+        .section-hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-6 bg-black border-b border-orange z-50">
+        <div class="text-3xl font-bold italic brand-font">LIVE <span class="text-orange">UR</span> RIDE</div>
+        <nav class="hidden md:flex space-x-8 font-semibold text-lg uppercase">
+            <button onclick="showSection('gear')" class="hover:text-orange">Gear</button>
+            <button onclick="showSection('helmets')" class="hover:text-orange">Helmets</button>
+            <button onclick="showSection('luggage')" class="hover:text-orange">Luggage</button>
+            <button onclick="showSection('calc')" class="hover:text-orange font-bold text-orange">Trip Calculator</button>
+            <button onclick="showSection('about')" class="hover:text-orange">About</button>
+        </nav>
+        <a href="https://wa.me/919825686709" class="bg-orange px-6 py-2 rounded-sm font-bold text-black hover:bg-white transition uppercase">Order Now</a>
+    </header>
+
+    <!-- Banner -->
+    <section class="relative h-[70vh] flex items-center justify-center">
+        <img src="https://drive.google.com/file/d/1_muNDgicIDmdmfm47nE6LOXOkhO5qb7v/view?usp=drive_link?q=80&w=2000" class="absolute inset-0 w-full h-full object-cover brightness-50">
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-6xl md:text-8xl mb-2 text-white">FOR THE OPEN ROAD</h1>
+            <p class="text-2xl text-orange mb-8 italic">Premium Safety & Style for Two-Wheelers</p>
+        </div>
+    </section>
+
+    <main class="py-16 px-6 max-w-6xl mx-auto">
+
+        <!-- Calculator Tool -->
+        <section id="calc" class="section-hidden">
+            <h2 class="text-4xl mb-8 border-l-4 border-orange pl-4 uppercase">Rider's Fuel Calculator</h2>
+            <div class="biker-card p-8 rounded-lg max-w-lg">
+                <div class="mb-4">
+                    <label class="block mb-2 uppercase text-orange">Distance (km)</label>
+                    <input type="number" id="dist" class="w-full bg-black border border-gray-700 p-2 text-white" placeholder="e.g. 500">
+                </div>
+                <div class="mb-4">
+                    <label class="block mb-2 uppercase text-orange">Mileage (km/l)</label>
+                    <input type="number" id="mil" class="w-full bg-black border border-gray-700 p-2 text-white" placeholder="e.g. 40">
+                </div>
+                <div class="mb-6">
+                    <label class="block mb-2 uppercase text-orange">Fuel Price (₹/l)</label>
+                    <input type="number" id="price" class="w-full bg-black border border-gray-700 p-2 text-white" placeholder="e.g. 100">
+                </div>
+                <button onclick="calculate()" class="bg-orange text-black w-full py-3 font-bold uppercase hover:bg-white">Estimate Cost</button>
+                <div id="result" class="mt-6 text-xl font-bold text-center border-t border-gray-800 pt-4"></div>
+            </div>
+        </section>
+
+        <!-- Product Sections -->
+        <section id="gear" class="section-hidden">
+            <h2 class="text-4xl mb-8 uppercase">Jackets, Pants & Gloves</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/14AAinTwtz9jgIH7WpQYiRHjAe0YWVRdl/view?usp=drive_link" class="w-full h-64 object-cover mb-4"><h3 class="text-xl">Armored Jackets</h3></div>
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1PTKIW7xwWpucXhKgATGKh9t1N8SxOmsT/view?usp=drive_link" class="w-full h-64 object-cover mb-4"><h3 class="text-xl">Riding Pants</h3></div>
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1L1NUquTj6z9tDJlI4t4TA2XKRozBEuVS/view?usp=drive_link" class="w-full h-64 object-cover mb-4"><h3 class="text-xl">Impact Gloves</h3></div>
+            </div>
+        </section>
+
+        <section id="helmets" class="section-hidden">
+            <h2 class="text-4xl mb-8 uppercase">Safety Helmets</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1LHD1tMqREpRDZ44dPfeJiD4OFH-6jaUl/view?usp=drive_link" class="w-full h-96 object-cover mb-4"><h3 class="text-2xl">Pro-Series Helmets</h3></div>
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1S5MVZcFFVk0G4aVfhU_MkJ1m8_NsdoyX/view?usp=drive_link" class="w-full h-96 object-cover mb-4"><h3 class="text-2xl">Urban Adventure Helmets</h3></div>
+            </div>
+        </section>
+
+        <section id="luggage" class="section-hidden">
+            <h2 class="text-4xl mb-8 uppercase">Luggage Systems</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1frNvqjKSGu9Y_hmsoE1uUNM43_KUhZwA/view?usp=drive_link" class="w-full h-96 object-cover mb-4"><h3 class="text-2xl">All-Weather Saddle Bags</h3></div>
+                <div class="biker-card p-4"><img src="https://drive.google.com/file/d/1zVi83Aq1r4AMey3YPiTGk28epXhPM_bp/view?usp=drive_link" class="w-full h-96 object-cover mb-4"><h3 class="text-2xl">Tank & Tail Bags</h3></div>
+            </div>
+        </section>
+
+        <section id="about" class="section-hidden">
+            <h2 class="text-4xl mb-8 uppercase">About Live Ur Ride</h2>
+            <div class="biker-card p-8">
+                <p class="text-xl mb-6">Founded by Nilu Baba and Sushma, we believe in providing safety for the rider and style for the journey.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-orange font-bold text-xl mb-2">STORE LOCATION</h4>
+                        <p>Galaxy Tower, Bodakdev, Ahmedabad</p>
+                    </div>
+                    <div>
+                        <h4 class="text-orange font-bold text-xl mb-2">CONTACT US</h4>
+                        <p>Store: +91 85679 67985</p>
+                        <p>Inquiry: +91 98256 86709</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('section[id]').forEach(s => s.classList.add('section-hidden'));
+            document.getElementById(id).classList.remove('section-hidden');
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+        function calculate() {
+            const d = document.getElementById('dist').value;
+            const m = document.getElementById('mil').value;
+            const p = document.getElementById('price').value;
+            const res = (d / m) * p;
+            document.getElementById('result').innerHTML = `Estimated Fuel Cost: ₹${res.toFixed(2)}`;
+        }
+        showSection('gear');
+    </script>
+</body>
+</html>
